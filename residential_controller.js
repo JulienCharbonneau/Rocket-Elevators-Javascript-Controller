@@ -39,12 +39,38 @@ class Column {
     }
   };
   createElevators = function (_amountOfFloors, _amountOfElevators) {
-    console.log("hello world");
+    for (let i = 1; i <= _amountOfElevators; i++) {
+      let elevator = new Elevator(elevatorID, "idle", _amountOfFloors, 1);
+      this.elevatorList.push(elevator);
+      elevatorID++;
+    }
   };
 }
 
 class Elevator {
-  constructor(_id, _amountOfFloors) {}
+  constructor(_id, _status, _amountOfFloors, _currentFloor) {
+    this.ID = _id;
+    this.status = _status;
+    this.currentFloor = _currentFloor;
+    this.direction = null;
+    this.door = new Door(_id, "closed");
+    this.floorRequestsButtonsList = [];
+    this.floorRequestList = [];
+    this.createFloorRequestButtons(_amountOfFloors);
+  }
+  createFloorRequestButtons(_amountOfFloors) {
+    let buttonFloor = 1;
+    for (let i = 1; i <= _amountOfFloors; i++) {
+      let floorRequestButton = new FloorRequestButton(
+        floorRequestButtonID,
+        "OFF",
+        buttonFloor
+      );
+      this.floorRequestsButtonsList.push(floorRequestButton);
+      buttonFloor++;
+      floorRequestButtonID++;
+    }
+  }
 }
 
 class CallButton {
@@ -69,6 +95,10 @@ class Door {
     this.status = _status;
   }
 }
-let testColumn = new Column(1, 10, 2);
-console.log("testColumn: ", testColumn);
+
+let testElevator = new Elevator(1, "status", 10, 1);
+console.log("testElevator: ", testElevator);
+
+// let testColumn = new Column(1, 10, 2);
+// console.log("testColumn: ", testColumn);
 module.exports = { Column, Elevator, CallButton, FloorRequestButton, Door };
