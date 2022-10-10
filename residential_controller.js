@@ -9,12 +9,13 @@ class Column {
     this.elevatorList = [];
     this.callButtonList = [];
     this.createCallButtons(_amountOfFloors);
+    this.createElevators(_amountOfFloors, _amountOfElevators);
   }
   createCallButtons = function (_amountOfFloors) {
     let buttonFloor = 1;
     console.log(_amountOfFloors);
 
-    for (let i = 0; i <= _amountOfFloors; i++) {
+    for (let i = 1; i <= _amountOfFloors; i++) {
       //If it's not the last floor
       if (buttonFloor < _amountOfFloors) {
         let callButton = new CallButton(callButtonID, "OFF", buttonFloor, "UP");
@@ -36,6 +37,9 @@ class Column {
 
       buttonFloor++;
     }
+  };
+  createElevators = function (_amountOfFloors, _amountOfElevators) {
+    console.log("hello world");
   };
 }
 
@@ -65,6 +69,6 @@ class Door {
     this.status = _status;
   }
 }
-let testColumn = new Column(1, 12, 1);
+let testColumn = new Column(1, 10, 2);
 console.log("testColumn: ", testColumn);
 module.exports = { Column, Elevator, CallButton, FloorRequestButton, Door };
