@@ -8,10 +8,12 @@ class Column {
     this.status;
     this.elevatorList = [];
     this.callButtonList = [];
+
     this.createCallButtons(_amountOfFloors);
     this.createElevators(_amountOfFloors, _amountOfElevators);
   }
   createCallButtons = function (_amountOfFloors) {
+    // create button to call the elevator outside the cage
     let buttonFloor = 1;
     console.log(_amountOfFloors);
 
@@ -45,6 +47,10 @@ class Column {
       elevatorID++;
     }
   };
+  // requestElevator(floor, direction) {
+  //   let elevator = this.findElevator(floor, direction);
+  //   Elevator.floorRequestList.push(floor);
+  // }
 }
 
 class Elevator {
@@ -59,6 +65,7 @@ class Elevator {
     this.createFloorRequestButtons(_amountOfFloors);
   }
   createFloorRequestButtons(_amountOfFloors) {
+    //create a button to request each floor
     let buttonFloor = 1;
     for (let i = 1; i <= _amountOfFloors; i++) {
       let floorRequestButton = new FloorRequestButton(
@@ -69,6 +76,41 @@ class Elevator {
       this.floorRequestsButtonsList.push(floorRequestButton);
       buttonFloor++;
       floorRequestButtonID++;
+    }
+  }
+  //Simulate when a user press a button inside the elevator
+  requestFloor(floor) {
+    this.floorRequestList.push(floor);
+
+    // this.move();
+    // this.operateDoors(); // code not write yet
+  }
+  // move() {
+  //   while (this.floorRequestList.length > 0) {
+  //     let destination = this.floorRequestList[0];
+  //     this.status = "moving";
+  //     if (this.currentFloor < destination) {
+  //       this.direction = "up";
+  //       this.sortFloorList();
+  //       console.log("hello world");
+  //     }
+  //     console.log("this.status: ", this.status);
+
+  //     console.log("destination: ", destination);
+  //   }
+  // }
+  sortFloorList() {
+    if (this.direction == "up") {
+      this.floorRequestList.sort(function (a, b) {
+        return a - b;
+      });
+
+      console.log("this.floorRequestList: ", this.floorRequestList);
+    } else {
+      this.floorRequestList.sort(function (a, b) {
+        return b - a;
+      });
+      console.log("this.floorRequestList: ", this.floorRequestList);
     }
   }
 }
@@ -98,7 +140,10 @@ class Door {
 
 let testElevator = new Elevator(1, "status", 10, 1);
 console.log("testElevator: ", testElevator);
-
+testElevator.requestFloor(7);
+testElevator.requestFloor(5);
+testElevator.requestFloor(2);
+testElevator.sortFloorList();
 // let testColumn = new Column(1, 10, 2);
 // console.log("testColumn: ", testColumn);
 module.exports = { Column, Elevator, CallButton, FloorRequestButton, Door };
