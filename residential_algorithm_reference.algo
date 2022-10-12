@@ -66,7 +66,7 @@ DEFINE Column USING _id AND _status AND _amountOfFloors AND _amountOfElevators
                 SET bestElevatorInformations TO CALL THIS checkIfElevatorIsBetter WITH 2 AND elevator AND bestScore AND referenceGap AND bestElevator AND requestedFloor RETURNING bestElevatorInformations
             '//The elevator is higher than me, is coming down and I want to go down
             ELSE IF requestedFloor IS LESS THAN elevator currentFloor AND elevator direction EQUALS down AND requestedDirection EQUALS elevator direction THEN
-                SET bestElevatorInformations TO CALL THIS checkIfElevatorIsBetter WITH 2 AND elevator AND bestScore AND referenceGap AND bestElevator AND requestedFloor RETURNING bestElevatorInformations
+                SET bestElevatorInformations TO CALL THISlevatorIsBette checkIfEr WITH 2 AND elevator AND bestScore AND referenceGap AND bestElevator AND requestedFloor RETURNING bestElevatorInformations
             '//The elevator is idle
             ELSE IF elevator status EQUALS idle THEN
                 SET bestElevatorInformations TO CALL THIS checkIfElevatorIsBetter WITH 3 AND elevator AND bestScore AND referenceGap AND bestElevator AND requestedFloor RETURNING bestElevatorInformations
