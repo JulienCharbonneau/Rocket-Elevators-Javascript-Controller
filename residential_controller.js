@@ -15,7 +15,6 @@ class Column {
   createCallButtons = function (_amountOfFloors) {
     // create button to call the elevator outside the cage
     let buttonFloor = 1;
-    console.log(_amountOfFloors);
 
     for (let i = 1; i <= _amountOfFloors; i++) {
       //If it's not the last floor
@@ -133,10 +132,7 @@ class Column {
       }
     });
     bestElevator = this.bestElevatorInformations.bestElevator;
-    console.log(
-      "this.bestElevatorInformations.bestElevator: ",
-      this.bestElevatorInformations.bestElevator
-    );
+
     return bestElevator;
   }
   checkIfElevatorIsBetter(
@@ -147,12 +143,10 @@ class Column {
     bestElevator,
     requestedFloor
   ) {
-    // console.log(" bestElevator: ", bestElevator);
     if (scoreToCheck < bestScore) {
       bestScore = scoreToCheck;
       bestElevator = newElevator;
       referenceGap = Math.abs(newElevator.currentFloor - requestedFloor);
-      // console.log("newElevator.currentFloor: ", newElevator.currentFloor);
     } else if (bestScore == scoreToCheck) {
       let gap = Math.abs(newElevator.currentFloor - requestedFloor);
 
@@ -229,17 +223,13 @@ class Elevator {
       this.floorRequestList.sort(function (a, b) {
         return a - b;
       });
-
-      console.log("this.floorRequestList: ", this.floorRequestList);
     } else {
       this.floorRequestList.sort(function (a, b) {
         return b - a;
       });
-      console.log("this.floorRequestList: ", this.floorRequestList);
     }
   }
   async operateDoors() {
-    console.log("wait 5 seconds");
     await new Promise((resolve) => setTimeout(resolve, 5000));
   }
 }
@@ -267,10 +257,4 @@ class Door {
   }
 }
 
-// let testElevator = new Elevator(1, "status", 10, 10);
-// console.log("testElevator: ", testElevator);
-// testElevator.requestFloor(3);
-let testColumn = new Column(1, 10, 2);
-testColumn.findElevator();
-console.log("testColumn: ", testColumn);
 module.exports = { Column, Elevator, CallButton, FloorRequestButton, Door };
