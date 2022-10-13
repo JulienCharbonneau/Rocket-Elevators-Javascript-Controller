@@ -230,6 +230,7 @@ class Elevator {
     }
   }
   async operateDoors() {
+    console.log("wait 5 seconds")
     await new Promise((resolve) => setTimeout(resolve, 5000));
   }
 }
