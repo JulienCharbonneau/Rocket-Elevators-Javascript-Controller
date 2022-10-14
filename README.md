@@ -1,17 +1,34 @@
-# Rocket-Elevators-Javascript-Controller
-This is the template to use for the javascript residential controller. You will find the classes that should be used along with some methods described in the requirements.
-The necessary files to run some tests are also present. With Node JS and NPM installed, first run:
+# Rocket-Elevators-Python-Controller
+This project is about implementing an elevator controller . The program is based on pseudocode file given and for this version written in JavaScript. 
 
-`npm install`
 
-and then, to run the tests:
+### Usage 
+To run the script with node.js run the command
+`node residential_controller.js`
 
+To run test with npm run the command
 `npm test`
 
-With a fully completed project, you should get an output like:
+More test can be uncomment at the bottom of the file
 
-![Screenshot from 2021-06-10 16-31-36](https://user-images.githubusercontent.com/28630658/121592985-5edd2600-ca09-11eb-9ff0-38215b74c67c.png)
+```
+// testColumn = new Column(1, 10, 2);
+// console.log("testColumn: ", testColumn);
 
-All of these files can be left in your final project but no scenarios should be present in your code. The grader will run tests similar to the ones provided.
+// testColumn.createElevators(10, 2);
+// testColumn.requestElevator(3, 7);
+// testColumn.findElevator(3, 7);
 
-Of course, make sure to edit this Readme file to describe your own project!
+// testElevator = new Elevator(1, 10);
+// console.log("testElevator: ", testElevator);
+
+// testElevator.requestFloor(10);
+```
+### Description
+This program creates a number of columns and elevators as needed and supports the needs of elevator request button and floor access request button with a system-based efficiency management  point allowing to evaluate the best choice taking into account the floor where the request was initiated versus the availability and the direction of the cage. This system thus makes it possible to efficiently sort requests and return a lift in a short time.
+
+#### Dependencies
+
+`npm`
+`node.js`
+
